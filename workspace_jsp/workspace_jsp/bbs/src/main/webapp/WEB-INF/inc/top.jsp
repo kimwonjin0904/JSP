@@ -8,6 +8,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<%
+	String userId = null;
+if(session.getAttribute("userId") != null){
+    userId = (String) session.getAttribute("userId");
+	}
+%>
 <body>
     <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -22,16 +28,30 @@
                     <li class="nav-item"><a class="nav-link active" href="<%=request.getContextPath()%>/main.jsp">메인</a></li>
                     <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/bbs.jsp">게시판</a></li>
                 </ul>
+                <% if(userId == null) { %>
+                <!-- 로그인 전 -->
                 <ul class="nav navbar-nav navbar-right" style="margin-right:50px">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"> 접속하기</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/login.jsp">로그인</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">회원가입</a></li>
+                            <li><a class="dropdown-item" href="join.jsp">회원가입</a></li>
                         </ul>
                     </li>
                 </ul>
+                <%}else{ %>
+                <!-- 로그인 후  -->  
+                 <ul class="nav navbar-nav navbar-right" style="margin-right:50px">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"> 님 .</a>
+                        <ul class="dropdown-menu">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <%} %>
             </div>
         </div>
     </nav>

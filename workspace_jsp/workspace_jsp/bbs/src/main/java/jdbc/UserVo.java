@@ -1,5 +1,5 @@
 package jdbc;
-
+// 출력시 콘솔에 뜨는 화면
 // Value Object (VO)
 public class UserVo {
     private String userId;  // camelCase 표기법 적용
